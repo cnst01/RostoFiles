@@ -1,5 +1,3 @@
-
-
 struct {
   #define VRX A1
   #define VRY A0
@@ -56,8 +54,4 @@ void loop() {
     Serial.print("Button: ");
     Serial.println(joy.but);
   }
-  
-  
-
-
 }

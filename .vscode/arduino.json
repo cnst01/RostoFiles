@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "joystick_control\\joystick_control.ino",
+    "programmer": "avrisp"
+}

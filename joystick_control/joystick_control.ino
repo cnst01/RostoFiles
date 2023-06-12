@@ -40,15 +40,12 @@ struct {
 } joy;
 
 struct{
-  Servo EyeY;
-  Servo EsqLid;
-  Servo DirLid;
-  Servo EsqEyeBrown;
+  Servo EyeX, EyeY, EsqLid, DirLid, EsqEyeBrown, DirEyeBrown;
   void setup() {
     // put your setup code here, to run once:
-    EyeX.attach(3);
-    EyeY.attach(4);
-    EsqLid.attach(8);
+    EyeX.attach(5);
+    EyeY.attach(6);
+    EsqLid.attach(10);
     DirLid.attach(11);
     Serial.begin(9600);
     EyeX.write(30);
@@ -87,6 +84,12 @@ dir fechado = 50 aberto = 1
 void Face_control(){
   joy.refresh();
   if(joy.has_changes(10,10)){
+    Serial.print("X: ");
+    Serial.print(joy.x);
+    Serial.print(" | Y: ");
+    Serial.println(joy.y);
+    Serial.print("Button: ");
+    Serial.println(joy.but);
     face.move_eyes(joy.x, joy.y);
     if(!joy.but){
       face.blink();
@@ -113,5 +116,6 @@ void setup() {
 }
 
 void loop() {
-  Face_control();    
+  Face_control();
+  testing_joy();    
 }

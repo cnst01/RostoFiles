@@ -1,16 +1,18 @@
 #include<Servo.h>
 
-struct{
+struct
+{
   Servo x;
   Servo y;
   Servo esq;
   Servo dir;
 }face;
 
-void setup() {
+void setup() 
+{
   pinMode(A0, INPUT);
   pinMode(A1, INPUT);
-  pinMode(A5, INPUT_PULLUP);
+  pinMode(12, INPUT_PULLUP);
   face.x.attach(5);
   face.y.attach(6);
   face.esq.attach(10);
@@ -19,12 +21,26 @@ void setup() {
   face.y.write(50);
   face.esq.write(15);
   face.dir.write(40);
+  delay(10);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void blink()
+{
+  face.esq.write(40);
+  face.dir.write(5);
+  delay(10);
+  face.esq.write(15);
+  face.dir.write(40);
+  
+}
+
+void loop() 
+{
   face.x.write(int(90 - (analogRead(A0)/10.24)));
   face.y.write(int(analogRead(A1)/10.24));
+  if(digitalRead(12) == 0){
+    blink();
+  }
 }
 
 
